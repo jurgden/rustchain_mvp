@@ -1,3 +1,7 @@
+mod ui;
+
 fn main() {
-    println!("Hello, world!");
+    if let Err(err) = ui::run_tui() {
+        eprintln!("Error: {:?}", err);
+    }
 }

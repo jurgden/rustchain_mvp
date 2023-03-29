@@ -1,16 +1,18 @@
+use std::io::{self};
 use termion::event::Key;
 use termion::input::TermRead;
 use termion::raw::IntoRawMode;
-use tui::backend::TermionBackend;
-use tui::layout::{Constraint, Direction, Layout};
-use tui::style::{Color, Modifier, Style};
-use tui::widgets::{Block, Borders, Paragraph, Text};
+use tui::backend::CrosstermBackend;
+// use tui::layout::{Constraint, Direction, Layout};
+// use tui::style::Modifier;
+// use tui::text;
+use tui::widgets::{Block, Borders};
 use tui::Terminal;
 
 pub fn run_tui() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize the terminal backend
-    let stdout = std::io::stdout().into_raw_mode()?;
-    let backend = TermionBackend::new(stdout);
+    let stdout = io::stdout().into_raw_mode()?;
+    let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
 
     // Enter the main loop
@@ -35,6 +37,6 @@ pub fn run_tui() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     // Clean up and exit
-    terminal.show_cursor()?;
-    Ok(())
+    // terminal.show_cursor()?;
+    // Ok(())
 }
